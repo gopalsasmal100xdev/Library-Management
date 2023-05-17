@@ -16,6 +16,7 @@ const session = require("express-session");
 const Logout = require("./Routes/logout.routes");
 const Return = require("./Routes/return.routes");
 const CardLogin = require("./Routes/cardLogin.routes");
+const CreateBook = require("./Routes/createBook.routes");
 /**
  * Constant variables
  */
@@ -50,7 +51,7 @@ app.use("/books", Books);
 app.use("/logout", Logout);
 app.use("/cardLogin", CardLogin);
 app.use("/return", Return);
-
+app.use("/createBook", CreateBook);
 /**
  * Listening
  */

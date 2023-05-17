@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="fa-fa-logo.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      .card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .group {
+        position: relative;
+      }
+
+      .form .group label {
+        font-size: 14px;
+        color: rgb(99, 102, 102);
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+      }
+
+      .form .group input,
+      .form .group textarea {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        outline: 0;
+        width: 100%;
+        background-color: transparent;
+      }
+
+      .form .group input:placeholder-shown + label,
+      .form .group textarea:placeholder-shown + label {
+        top: 10px;
+        background-color: transparent;
+      }
+
+      .form .group input:focus,
+      .form .group textarea:focus {
+        border-color: #3366cc;
+      }
+
+      .form .group input:focus + label,
+      .form .group textarea:focus + label {
+        top: -10px;
+        left: 10px;
+        background-color: #fff;
+        color: #3366cc;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .form .group textarea {
+        resize: none;
+        height: 100px;
+      }
+
+      .form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      .submitCard {
+        background-color: #fff;
+        box-shadow: 0 10px 60px rgb(218, 229, 255);
+        border: 1px solid rgb(159, 159, 160);
+        border-radius: 20px;
+        padding: 2rem 0.7rem 0.7rem 0.7rem;
+        text-align: center;
+        font-size: 1.125rem;
+        max-width: 320px;
+      }
+      .form-title {
+        color: #000000;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+
+      .form-paragraph {
+        margin-top: 10px;
+        font-size: 0.9375rem;
+        color: rgb(105, 105, 105);
+      }
+
+      .drop-container {
+        background-color: #fff;
+        position: relative;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        margin-top: 2.1875rem;
+        border-radius: 10px;
+        border: 2px dashed rgb(171, 202, 255);
+        color: #444;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+      }
+
+      .drop-container:hover {
+        background: rgba(0, 140, 255, 0.164);
+        border-color: rgba(17, 17, 17, 0.616);
+      }
+
+      .drop-container:hover .drop-title {
+        color: #222;
+      }
+
+      .drop-title {
+        color: #444;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        transition: color 0.2s ease-in-out;
+      }
+
+      #file-input {
+        width: 350px;
+        max-width: 100%;
+        color: #444;
+        padding: 2px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid rgba(8, 8, 8, 0.288);
+        /* display: none; */
+      }
+
+      #file-input::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: #084cdf;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+        display: none !important;
+      }
+
+      #file-input::file-selector-button:hover {
+        background: #0d45a5;
+      }
+    </style>
+    <title>Create Books</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="logo.png" alt="logo" width="70px" height="70px" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                >Profile</a
+              >
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/card">Card</a></li>
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                <li>
+                  <a class="dropdown-item" href="/cardLogin"
+                    >Login Using Card</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-3 mt-3 col-md-3 mx-auto">
+      <form
+        class="form"
+        action="/createBook"
+        method="post"
+        enctype="multipart/form-data">
+        <!-- start -->
+        <div class="submitCard">
+          <span class="form-title">Create Book</span>
+          <div class="group">
+            <input placeholder="" type="text" required="" name="title" />
+            <label for="name">Book Name</label>
+          </div>
+          <div class="group">
+            <input
+              placeholder=""
+              type="text"
+              id="email"
+              name="author"
+              required="" />
+            <label for="email">Author</label>
+          </div>
+          <div class="group">
+            <textarea
+              placeholder=""
+              id="comment"
+              name="description"
+              rows="5"
+              required=""></textarea>
+            <label for="comment">Description</label>
+          </div>
+          <span class="form-title">Upload books image</span>
+          <p class="form-paragraph">File should be an image</p>
+          <label for="file-input" class="drop-container">
+            <span class="drop-title">Click here</span>
+            <input
+              type="file"
+              accept="image/*"
+              required=""
+              id="file-input"
+              name="image" />
+          </label>
+          <br />
+          <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+
+        <!-- end -->
+      </form>
+    </div>
+  </body>
+</html>
