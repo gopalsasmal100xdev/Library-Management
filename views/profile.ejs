@@ -33,6 +33,9 @@
               <a class="nav-link" href="/profile">Profile</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/createBook">Add Books</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item dropdown">
@@ -64,36 +67,38 @@
         Here is list of borrowed books.Click <code>Return</code> button to
         return.
       </p>
-      <div class="d-flex flex-column justify-content-evenly gap-4">
-        <% borrowedBooks.forEach((book)=>{ %>
-        <div style="width: 550px">
-          <h1><%=book.title%></h1>
-          <div class="card mb-3">
-            <div class="row no-gutters" style="width: 100%">
-              <div class="col-md-4">
-                <img
-                  src="<%=book.image%>"
-                  class="card-img"
-                  alt="<%=book.title%>" />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title"><%=book.title%></h5>
-                  <p class="card-text"><%=book.description%></p>
-                  <!-- <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p> -->
-                  <form action="/return/<%=book?._id%>" method="post">
-                    <button type="submit" class="btn btn-warning">
-                      Return
-                    </button>
-                  </form>
+      <div class="container d-flex flex-column">
+        <div class="row">
+          <% borrowedBooks.forEach((book)=>{ %>
+          <div style="width: 550px">
+            <h1><%=book.title%></h1>
+            <div class="card mb-3">
+              <div class="row no-gutters" style="width: 100%">
+                <div class="col-md-4">
+                  <img
+                    src="<%=book.image%>"
+                    class="card-img"
+                    alt="<%=book.title%>" />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><%=book.title%></h5>
+                    <p class="card-text"><%=book.description%></p>
+                    <!-- <p class="card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </p> -->
+                    <form action="/return/<%=book?._id%>" method="post">
+                      <button type="submit" class="btn btn-warning">
+                        Return
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <%}) %>
         </div>
-        <%}) %>
       </div>
     </div>
   </body>

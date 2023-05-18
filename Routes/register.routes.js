@@ -24,8 +24,6 @@ router
           libraryCardNumber: userId,
         });
         const userData = await user.save();
-        console.log(userId);
-        console.log(userData);
       } catch (e) {
         console.log(e.message);
       }

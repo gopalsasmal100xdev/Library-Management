@@ -4,6 +4,12 @@ const Book = require("../models/Books.model");
 
 const Router = express.Router();
 
+const isAuth = (req, res, next) => {
+  if (req.session.myData?.isAuth) {
+    next();
+  } else res.redirect("/login");
+};
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/");
@@ -20,12 +26,11 @@ const filter = (req, res, cb) => {};
 const upload = multer({ storage: storage });
 
 Router.route("/")
-  .get((req, res) => {
+  .get(isAuth, (req, res) => {
     res.render("createBooks");
   })
-  .post(upload.single("image"), async (req, res) => {
+  .post(isAuth, upload.single("image"), async (req, res) => {
     const { author, description, title } = req.body;
-    // const image = title.replace(/\s/g, "");
     const image = req.imageUrl;
 
     const newBook = new Book({
@@ -33,6 +38,7 @@ Router.route("/")
       image,
       description,
       title,
+      creator: req.session?.myData?.email,
     });
 
     try {

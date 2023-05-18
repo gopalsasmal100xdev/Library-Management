@@ -25,6 +25,10 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  creator: {
+    type: String,
+    default: "",
+  },
 });
 
 const Book = mongoose.model("books", BookSchema);

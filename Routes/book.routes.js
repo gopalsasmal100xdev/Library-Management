@@ -19,7 +19,6 @@ router
   .get(async (req, res) => {
     try {
       const allBooks = await Books.find({});
-      console.log(allBooks);
       res.json({ allBooks });
     } catch (e) {
       console.log(e.message);
